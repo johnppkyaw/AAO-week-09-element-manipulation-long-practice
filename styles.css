@@ -1,0 +1,30 @@
+body {
+  padding: 10px;
+  background: linear-gradient(0.75turn, #0d4a64, #27480e);
+}
+
+h1 {
+  color: rgba(77, 130, 255, 0.904);
+  text-align: center;
+}
+
+h3 {
+  text-align: center;
+}
+
+.my-details {
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 20px 30px;
+  width: 50%;
+  margin: 0 auto;
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1);
+}
+
+li.detail:hover {
+  background-color: aquamarine;
+}
+
+li.detail, a {
+  color: rgb(65, 3, 65);
+}
