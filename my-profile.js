@@ -23,12 +23,18 @@ const loadMyProfile = () => {
   h2.setAttribute('class', 'picBelow')
   document.body.appendChild(h2);
 
+
+
   setInterval(function() {
     date = new Date();
     h2.textContent = date;
     hour = date.getHours();
 
     document.getElementById('clock').textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+
+    countDown
+
+
   }, 1000);
 
 
@@ -133,6 +139,37 @@ const loadMyProfile = () => {
       profilePic.classList.remove('blueberry');
     }
   }
+
+//Bonus C: Countdown
+const countDown = document.createElement('div');
+countDown.setAttribute('id', 'countdown');
+document.body.appendChild(countDown);
+
+setInterval(function() {
+  //get current time in milliseconds
+const currentTime = new Date().getTime();
+//substract it from birthday
+let timeDifference = new Date('2024-08-28 ').getTime() - currentTime;
+let year = convertTime(timeDifference, 3.154e10)
+let month = convertTime(timeDifference, 2.628e9)
+let day = convertTime(timeDifference, 8.64e7)
+let hr = convertTime(timeDifference, 3.6e6)
+let min = convertTime(timeDifference, 60000)
+let sec = Math.floor(timeDifference/1000)
+document.getElementById('countdown').textContent = `${year} year ${month} month(s) ${day} day(s) ${hr} hour(s) ${min} minute(s) ${sec} second(s) until my birthday!`
+
+//convert milliseconds to year, month, day, hr, min, sec
+//if converted to any is < 1, then change current to 0
+function convertTime(currentDifference, currUnitInMs) {
+  let unitAmount = Math.floor(currentDifference/currUnitInMs);
+  timeDifference -= unitAmount * currUnitInMs;
+  return unitAmount;
 }
+}, 1000)
+
+}
+
+
+
 
 window.onload = loadMyProfile;
