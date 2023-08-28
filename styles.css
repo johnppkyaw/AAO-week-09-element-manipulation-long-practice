@@ -3,7 +3,7 @@ body {
   background: linear-gradient(0.75turn, #0d4a64, #27480e);
 }
 
-h1 {
+h1, h2 {
   color: rgba(77, 130, 255, 0.904);
   text-align: center;
 }
@@ -27,4 +27,24 @@ li.detail:hover {
 
 li.detail, a {
   color: rgb(65, 3, 65);
+}
+
+.penguin {
+  background-image: url('./assets/penguin2.jpeg');
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blueberry {
+  background-image: url('./assets/blueberries-1527711083.jpg');
+  width: 200px;
+  height: 200px;
+  background-size: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -13,14 +13,37 @@ const loadMyProfile = () => {
   h1.textContent = firstName[randomNumber];
   document.body.appendChild(h1);
 
+  let date = new Date();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let seconds = date.getSeconds();
+
+  const h2 = document.createElement('h2');
+  h2.textContent = date;
+  h2.setAttribute('class', 'picBelow')
+  document.body.appendChild(h2);
+
+  setInterval(function() {
+    date = new Date();
+    h2.textContent = date;
+    hour = date.getHours();
+
+    document.getElementById('clock').textContent = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  }, 1000);
+
+
+
   //Add About Me with unordered lists
   const aboutMe = [
     `I am from ${location[randomNumber]}.`,
+    `It's currently <span id="clock"></span> in California`,
     "My background is healthcare.",
     "I am currently following AAO cirriculum to study software engineering.",
     "I am studying to become a full stack developer."
   ]
   listCreator('About Me', 'ul', aboutMe);
+
+  console.log(document.getElementById('clock'))
 
   //Skills
   const skills = [
@@ -42,9 +65,9 @@ const loadMyProfile = () => {
   listCreator('Education and Work experience', 'ul', educationAndWork);
 
   const hobbies = [
-    'Movies of horror, thriller, action, or comedy genere.',
-    'Stocks and crytocurrency.',
-    'Shoot \'em up mobile game called Hawk: Freedom Squadron.',
+    'Movies of horror, thriller, action, or comedy genere',
+    'Stocks and crytocurrency',
+    'Shoot \'em up mobile game called Hawk: Freedom Squadron',
     'Walking in a park',
     'Youtube/Reddit'
   ]
@@ -56,6 +79,20 @@ const loadMyProfile = () => {
   ]
   listCreator('Contact Me', 'ul', contact);
 
+  //Bonus A
+  const profilePic = document.createElement('div');
+  profilePic.setAttribute('class', 'penguin');
+  h2.insertAdjacentElement('afterend', profilePic);
+
+  const likes = [
+    "Burgers",
+    "Self-checkout lanes",
+    "Steaks",
+    "Sets objects"
+  ]
+  listCreator('Likes', 'ul', likes);
+
+
   //List element creator with title
   function listCreator(title, ulOrOl, array) {
     //title
@@ -66,6 +103,7 @@ const loadMyProfile = () => {
     //list
     const ulOrol = document.createElement(ulOrOl);
     ulOrol.setAttribute('class', 'my-details')
+    ulOrol.setAttribute('id', title.split(' ').join('-'))
     array.forEach(list => {
       const li = document.createElement('li');
       li.setAttribute('class', 'detail')
@@ -75,6 +113,26 @@ const loadMyProfile = () => {
     document.body.appendChild(ulOrol);
   }
 
+  //Bonus B
+  //change profile pic
+  const button = document.createElement('button');
+  button.setAttribute('id', 'changePic');
+  button.setAttribute('type', 'button');
+  button.textContent="Click to change pic";
+  button.style.display = "block";
+  button.style.marginLeft = "auto";
+  button.style.marginRight = "auto";
+  profilePic.insertAdjacentElement('afterend', button);
+  button.onclick = function() {
+    let isPenguin = profilePic.classList.contains('penguin');
+    if (isPenguin) {
+      profilePic.classList.add('blueberry');
+      profilePic.classList.remove('penguin');
+    } else {
+      profilePic.classList.add('penguin');
+      profilePic.classList.remove('blueberry');
+    }
+  }
 }
 
 window.onload = loadMyProfile;
